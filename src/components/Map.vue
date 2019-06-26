@@ -8,36 +8,12 @@
 </template>
 
 <script >
+const markersData = require("../AddressInfo");
 export default {
   data() {
     return {
-      markers: [
-        {
-          coords: { lat: 41.9484, lng: -87.6553 },
-          content: "<h1>Wrigley Field</h1>",
-          iconImage:
-            "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-          visible: true,
-          properties: {
-            bathrooms: 2
-          }
-        },
-        {
-          coords: { lat: 41.8789, lng: -87.6359 },
-          content: "<h1>Willis Tower</h1>",
-          visible: true,
-          properties: {
-            bathrooms: 1
-          }
-        },
-        {
-          coords: { lat: 41.7886, lng: -87.5987 },
-          visible: true,
-          properties: {
-            bathrooms: 3
-          }
-        }
-      ],
+      previousMarker: null,
+      markers: markersData.markers,
       allMarkers: []
     };
   },
@@ -46,9 +22,11 @@ export default {
   },
   methods: {
     removeLocation() {
-      console.log(this.allMarkers);
       this.allMarkers[0].setVisible(false);
       this.allMarkers[2].setVisible(false);
+      if (this.previousMarker) {
+        this.previousMarker.infowindow.close();
+      }
     },
     showAll() {
       this.allMarkers.forEach(address => {
@@ -59,11 +37,13 @@ export default {
       this.markers.forEach((address, i) => {
         if (address.properties.bathrooms == 2) {
           this.allMarkers[i].setVisible(false);
+          if (this.previousMarker == this.allMarkers[i]) {
+            this.previousMarker.infowindow.close();
+          }
         }
       });
     },
     initMap() {
-      console.log(this.markers);
       // Map options
       var options = {
         zoom: 10,
@@ -84,11 +64,19 @@ export default {
           marker.setIcon(address.iconImage);
         }
         if (address.content) {
-          var infoWindow = new google.maps.InfoWindow({
+          marker.infowindow = new google.maps.InfoWindow({
             content: address.content
           });
-          marker.addListener("click", function() {
-            infoWindow.open(map, marker);
+          marker.addListener("click", () => {
+            marker.infowindow.open(map, marker);
+            if (this.previousMarker) {
+              this.previousMarker.infowindow.close();
+              if (this.previousMarker == marker) {
+                marker.infowindow.open(map, marker);
+              }
+            }
+
+            this.previousMarker = marker;
           });
         }
         this.allMarkers.push(marker);

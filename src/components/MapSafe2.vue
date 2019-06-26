@@ -35,6 +35,7 @@ export default {
         {
           coords: { lat: 41.7886, lng: -87.5987 },
           visible: true,
+          content: "<h1>University of Chicago</h1>",
           properties: {
             bathrooms: 3
           }
@@ -51,6 +52,9 @@ export default {
       console.log(this.allMarkers);
       this.allMarkers[0].setVisible(false);
       this.allMarkers[2].setVisible(false);
+      if (this.previousMarker) {
+        this.previousMarker.infowindow.close();
+      }
     },
     showAll() {
       this.allMarkers.forEach(address => {
@@ -61,7 +65,13 @@ export default {
       this.markers.forEach((address, i) => {
         if (address.properties.bathrooms == 2) {
           this.allMarkers[i].setVisible(false);
+          if (this.previousMarker == this.allMarkers[i]) {
+            this.previousMarker.infowindow.close();
+          }
         }
+        // if (this.previousMarker) {
+        //   this.previousMarker.infowindow.close();
+        // }
       });
     },
     initMap() {
@@ -85,23 +95,25 @@ export default {
           marker.setIcon(address.iconImage);
         }
         if (address.content) {
-          var infoWindow = new google.maps.InfoWindow({
+          // var infoWindow = new google.maps.InfoWindow({
+          marker.infowindow = new google.maps.InfoWindow({
             content: address.content
           });
           marker.addListener("click", () => {
-            infoWindow.open(map, marker);
-            // this.previousMarker = marker
+            // infoWindow.open(map, marker);
+            marker.infowindow.open(map, marker);
             if (this.previousMarker) {
-              this.previousMarker.infoWindow.close();
+              this.previousMarker.infowindow.close();
+              if (this.previousMarker == marker) {
+                marker.infowindow.open(map, marker);
+              }
             }
 
             this.previousMarker = marker;
-            console.log(this.previousMarker);
           });
         }
         this.allMarkers.push(marker);
       });
-      console.log(this.allMarkers);
     }
   }
 };
