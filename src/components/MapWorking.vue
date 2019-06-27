@@ -8,8 +8,8 @@
 </template>
 
 <script >
-// const markersData = require("../AddressInfo");
-const markersData = require("../dataCleanedUpdated.js");
+const markersData = require("../AddressInfo");
+const markersDataFull = require("../dataCleaned.json");
 
 console.log(typeof markersDataFull);
 console.log(typeof markersData);
@@ -51,8 +51,8 @@ export default {
     initMap() {
       // Map options
       var options = {
-        zoom: 12,
-        center: { lat: 41.9, lng: -87.6676657 }
+        zoom: 10,
+        center: { lat: 41.8781, lng: -87.6298 }
       };
       // New Map
       var map = new google.maps.Map(document.getElementById("map"), options);
@@ -62,9 +62,12 @@ export default {
         var marker = new google.maps.Marker({
           position: address.coords,
           map: map,
+          icon: address.iconImage,
           visible: address.visible
         });
-
+        if (address.iconImage) {
+          marker.setIcon(address.iconImage);
+        }
         if (address.content) {
           marker.infowindow = new google.maps.InfoWindow({
             content: address.content
