@@ -1,9 +1,40 @@
 <template>
   <v-container>
-    <v-btn color="info" @click="removeLocation()">Remove</v-btn>
-    <v-btn color="success" @click="showAll()">Show All</v-btn>
-    <v-btn color="danger" @click="removeTwoBathrooms()">Remove 2 Bathrooms</v-btn>
     <div id="map"></div>
+    <div class="mt-2">
+      <v-text-field
+        label="Search For Address"
+        box
+        color="success"
+        class="ml-1 mr-1"
+        style="max-width: 200px;"
+      ></v-text-field>
+      <div style="display: flex; flex-direction: row;">
+        <v-select
+          :items="zipItems"
+          box
+          label="Zipcode"
+          color="success"
+          style="max-width: 160px;"
+          class="ml-1 mr-1"
+        ></v-select>
+        <v-text-field
+          label="Min Current Land"
+          box
+          color="success"
+          class="ml-1 mr-1"
+          style="max-width: 200px;"
+        ></v-text-field>
+        <v-text-field
+          label="Max Current Land"
+          box
+          color="success"
+          class="ml-1 mr-1"
+          style="max-width: 200px;"
+        ></v-text-field>
+      </div>
+      <v-btn color="info" @click="removeLocation()">Apply Filters</v-btn>
+    </div>
   </v-container>
 </template>
 
@@ -16,7 +47,8 @@ export default {
     return {
       previousMarker: null,
       markers: markersData.markers,
-      allMarkers: []
+      allMarkers: [],
+      zipItems: ["Any Zipcode", "60613", "60614", "60615"]
     };
   },
   mounted() {
@@ -24,12 +56,8 @@ export default {
     this.initMap();
   },
   methods: {
-    removeLocation() {
-      this.allMarkers[0].setVisible(false);
-      this.allMarkers[2].setVisible(false);
-      if (this.previousMarker) {
-        this.previousMarker.infowindow.close();
-      }
+    current_land_filter(value) {
+      console.log(value);
     },
     showAll() {
       this.allMarkers.forEach(address => {
