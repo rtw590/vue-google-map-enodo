@@ -11,9 +11,6 @@
 // const markersData = require("../AddressInfo");
 const markersData = require("../dataCleanedUpdated.js");
 
-console.log(typeof markersDataFull);
-console.log(typeof markersData);
-
 export default {
   data() {
     return {
@@ -23,6 +20,7 @@ export default {
     };
   },
   mounted() {
+    // console.log(this.markers[0]);
     this.initMap();
   },
   methods: {
@@ -64,6 +62,38 @@ export default {
           map: map,
           visible: address.visible
         });
+
+        // Add markers with colors
+
+        if (address.properties.ESTIMATED_MARKET_VALUE <= 400000) {
+          marker.setIcon(
+            "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+          );
+        }
+
+        if (
+          address.properties.ESTIMATED_MARKET_VALUE > 400000 &&
+          address.properties.ESTIMATED_MARKET_VALUE <= 450000
+        ) {
+          marker.setIcon(
+            "https://maps.google.com/mapfiles/ms/icons/orange-dot.png"
+          );
+        }
+
+        if (
+          address.properties.ESTIMATED_MARKET_VALUE > 450000 &&
+          address.properties.ESTIMATED_MARKET_VALUE <= 525000
+        ) {
+          marker.setIcon(
+            "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+          );
+        }
+
+        if (address.properties.ESTIMATED_MARKET_VALUE > 525001) {
+          marker.setIcon(
+            "https://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          );
+        }
 
         if (address.content) {
           marker.infowindow = new google.maps.InfoWindow({
