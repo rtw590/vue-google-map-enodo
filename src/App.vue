@@ -3,7 +3,7 @@
     <v-toolbar app color="rgb(156, 204, 101)">
       <v-toolbar-title class="headline text-uppercase">
         <span>Chicago:</span>
-        <!-- <span class="font-weight-light ml-2">Real Estate</span> -->
+        <span class="font-weight-light ml-2">Real Estate</span>
       </v-toolbar-title>
     </v-toolbar>
 
