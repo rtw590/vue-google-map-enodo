@@ -634,14 +634,35 @@
         ></v-select>
       </v-flex>
 
-      <v-flex xs12 sm6 md2>
+      <v-flex xs12 sm6 md3>
         <v-text-field
-          label="Sale Date xx/xx/xxxx"
-          v-model="saleDate"
+          label="Min Sale Date xx/xx/xxxx"
+          v-model="minSaleDate"
           box
           color="success"
           class="ml-1 mr-1"
         ></v-text-field>
+      </v-flex>
+
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Max Sale Date xx/xx/xxxx"
+          v-model="maxSaleDate"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+
+      <v-flex xs12 sm6 md2>
+        <v-select
+          :items="appcntItems"
+          v-model="appcntSelected"
+          box
+          label="APPCNT"
+          color="success"
+          class="ml-1 mr-1"
+        ></v-select>
       </v-flex>
 
       <v-flex xs12 sm6 md3>
@@ -663,15 +684,125 @@
         ></v-text-field>
       </v-flex>
 
-      <v-flex xs12 sm6 md2>
-        <v-select
-          :items="appcntItems"
-          v-model="appcntSelected"
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Min Appeal_A"
+          v-model="minAppealA"
           box
-          label="APPCNT"
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Max Appeal_A"
+          v-model="maxAppealA"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+
+      <v-flex xs12 sm6 md4>
+        <v-select
+          :items="appealAStatusItems"
+          v-model="appealAStatusSelected"
+          box
+          label="Appeal A Status"
           color="success"
           class="ml-1 mr-1"
         ></v-select>
+      </v-flex>
+
+      <v-flex xs12 sm6 md4>
+        <v-select
+          :items="appealAResultItems"
+          v-model="appealAResultSelected"
+          box
+          label="Appeal A Result"
+          color="success"
+          class="ml-1 mr-1"
+        ></v-select>
+      </v-flex>
+
+      <v-flex xs12 sm6 md4>
+        <v-select
+          :items="appealAReasonItems"
+          v-model="appealAReasonSelected"
+          box
+          label="Appeal A Reason"
+          color="success"
+          class="ml-1 mr-1"
+        ></v-select>
+      </v-flex>
+
+      <v-flex xs12 sm6 md4>
+        <v-select
+          :items="appealAPinResultItems"
+          v-model="appealAPinResultSelected"
+          box
+          label="Appeal A Pin Result"
+          color="success"
+          class="ml-1 mr-1"
+        ></v-select>
+      </v-flex>
+
+      <v-flex xs12 sm6 md4>
+        <v-text-field
+          label="Min Appeal_A_Propav"
+          v-model="minAppealAPropav"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+      <v-flex xs12 sm6 md4>
+        <v-text-field
+          label="Max Appeal_A_Propav"
+          v-model="maxAppealAPropav"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Min Appeal_A_Currav"
+          v-model="minAppealACurrav"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Max Appeal_A_Currav"
+          v-model="maxAppealACurrav"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Min Appeal A Result Date xx/xx/xxxx"
+          v-model="minAppealAResultDate"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
+      </v-flex>
+
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Max Appeal A Result xx/xx/xxxx"
+          v-model="maxAppealAResultDate"
+          box
+          color="success"
+          class="ml-1 mr-1"
+        ></v-text-field>
       </v-flex>
     </v-layout>
   </v-container>
@@ -991,11 +1122,63 @@ export default {
       multiSaleSelected: "",
       deedTypeItems: ["Any", "0", "1", "2", "7"],
       deedTypeSelected: "",
-      saleDate: "",
+      minSaleDate: "",
+      maxSaleDate: "",
       minSaleAmount: "",
       maxSaleAmount: "",
       appcntItems: ["Any", "0", "1"],
-      appcntSelected: ""
+      appcntSelected: "",
+      minAppealA: "",
+      maxAppealA: "",
+      appealAStatusItems: [
+        "Any",
+        "Appeal Review Complete",
+        "Appeal Work In Progress"
+      ],
+      appealAStatusSelected: "",
+      appealAResultItems: [
+        "Any",
+        "Assessed Value Adjusted",
+        "Assessed Value Not Adjusted"
+      ],
+      appealAResultSelected: "",
+      appealAReasonItems: [
+        "Any",
+        "0",
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "9",
+        "11",
+        "12",
+        "16",
+        "17",
+        "18",
+        "20",
+        "22",
+        "23",
+        "27",
+        "29",
+        "36",
+        "38",
+        "48",
+        "49"
+      ],
+      appealAReasonSelected: "",
+      appealAPinResultItems: [
+        "Any",
+        "Assessed Value Adjusted",
+        "Assessed Value Not Adjusted"
+      ],
+      appealAPinResultSelected: "",
+      minAppealAPropav: "",
+      maxAppealAPropav: "",
+      minAppealACurrav: "",
+      maxAppealACurrav: "",
+      minAppealAResultDate: "",
+      maxAppealAResultDate: ""
     };
   },
   mounted() {
@@ -1069,15 +1252,28 @@ export default {
       this.maxUnitsTotal = "";
       this.multiSaleSelected = "";
       this.deedTypeSelected = "";
-      this.saleDate = "";
+      this.minSaleDate = "";
+      this.maxSaleDate = "";
       this.minSaleAmount = "";
       this.maxSaleAmount = "";
       this.appcntSelected = "";
+      this.minAppealA = "";
+      this.maxAppealA = "";
+      this.appealAStatusSelected = "";
+      this.appealAResultSelected = "";
+      this.appealAReasonSelected = "";
+      this.appealAPinResultSelected = "";
+      this.minAppealAPropav = "";
+      this.maxAppealAPropav = "";
+      this.minAppealACurrav = "";
+      this.maxAppealACurrav = "";
+      this.minAppealAResultDate = "";
+      this.maxAppealAResultDate = "";
     },
     applyFilters() {
-      // console.log(this.minSaleAmount);
-      // console.log(this.maxSaleAmount);
-      console.log(this.appcntSelected);
+      console.log(this.minAppealAResultDate);
+      console.log(this.maxAppealAResultDate);
+      // console.log(this.appealAPinResultSelected);
     },
     current_land_filter(value) {
       console.log(value);
