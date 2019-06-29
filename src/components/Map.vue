@@ -821,7 +821,7 @@ export default {
       full_address: "",
       latitude: "",
       longitude: "",
-      zipItems: ["Any", "60613", "60614", "60615"],
+      zipItems: ["Any", "60607", "60608", "60612", "60614", "60616", "60622"],
       zipSelected: "",
       recItems: ["Any", "A-HD"],
       recSelected: "",
@@ -1186,6 +1186,75 @@ export default {
     this.initMap();
   },
   methods: {
+    applyFilters() {
+      this.markers.forEach((address, i) => {
+        //Start with all markers visible
+        // address.properties.keep = true
+        this.allMarkers[i].setVisible(true);
+
+        // Check Full Address
+        if (this.full_address != "") {
+          if (
+            address.properties.Full_Address.toLowerCase().includes(
+              this.full_address.toLowerCase()
+            ) == false
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Zipcode
+        if (this.zipSelected != "" && this.zipSelected != "Any") {
+          if (address.properties.Zip != this.zipSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Latitude
+        if (this.latitude != "") {
+          let strToFloat = parseFloat(this.latitude);
+
+          let difference = Math.abs(strToFloat - address.coords.lat);
+
+          // console.log(difference > 0.01);
+
+          if (difference > 0.01 == true) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Latitude
+        if (this.longitude != "") {
+          let strToFloatLon = parseFloat(this.longitude);
+
+          let difference = Math.abs(strToFloatLon - address.coords.lng);
+
+          // console.log(difference > 0.01);
+
+          if (difference > 0.01 == true) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Longitude
+      });
+    },
     clearFilters() {
       this.full_address = "";
       this.latitude = "";
@@ -1269,11 +1338,9 @@ export default {
       this.maxAppealACurrav = "";
       this.minAppealAResultDate = "";
       this.maxAppealAResultDate = "";
-    },
-    applyFilters() {
-      console.log(this.minAppealAResultDate);
-      console.log(this.maxAppealAResultDate);
-      // console.log(this.appealAPinResultSelected);
+      this.allMarkers.forEach(address => {
+        address.setVisible(true);
+      });
     },
     current_land_filter(value) {
       console.log(value);
