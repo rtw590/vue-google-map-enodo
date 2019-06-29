@@ -1189,7 +1189,6 @@ export default {
     applyFilters() {
       this.markers.forEach((address, i) => {
         //Start with all markers visible
-        // address.properties.keep = true
         this.allMarkers[i].setVisible(true);
 
         // Check Full Address
@@ -1235,7 +1234,7 @@ export default {
           }
         }
 
-        // Check Latitude
+        // Check Longitude
         if (this.longitude != "") {
           let strToFloatLon = parseFloat(this.longitude);
 
@@ -1252,7 +1251,1035 @@ export default {
           }
         }
 
-        // Check Longitude
+        // Check Rec_Type
+        if (this.recSelected != "" && this.recSelected != "Any") {
+          if (address.properties.REC_TYPE != this.recSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Pin
+        if (this.pin != "") {
+          if (
+            address.properties.PIN.toLowerCase().includes(
+              this.pin.toLowerCase()
+            ) == false
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check OVACLS
+        if (this.ovaclsSelected != "" && this.ovaclsSelected != "Any") {
+          if (address.properties.OVACLS != this.ovaclsSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check CLASS_DESCRIPTION
+        if (
+          this.class_descriptionSelected != "" &&
+          this.class_descriptionSelected != "Any"
+        ) {
+          if (
+            address.properties.CLASS_DESCRIPTION !=
+            this.class_descriptionSelected
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Current Land
+        if (this.minCurrentLand != "") {
+          if (
+            address.properties.CURRENT_LAND <
+            parseInt(this.minCurrentLand.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Current Land
+        if (this.maxCurrentLand != "") {
+          if (
+            address.properties.CURRENT_LAND >
+            parseInt(this.maxCurrentLand.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Current Building
+        if (this.minCurrentBuilding != "") {
+          if (
+            address.properties.CURRENT_BUILDING <
+            parseInt(this.minCurrentBuilding.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Current Building
+        if (this.maxCurrentBuilding != "") {
+          if (
+            address.properties.CURRENT_BUILDING >
+            parseInt(this.maxCurrentBuilding.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Current Total
+        if (this.minCurrentTotal != "") {
+          if (
+            address.properties.CURRENT_TOTAL <
+            parseInt(this.minCurrentTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Current Total
+        if (this.maxCurrentTotal != "") {
+          if (
+            address.properties.CURRENT_TOTAL >
+            parseInt(this.maxCurrentTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Est Market Value
+        if (this.minEstimatedMarketValue != "") {
+          if (
+            address.properties.ESTIMATED_MARKET_VALUE <
+            parseInt(this.minEstimatedMarketValue.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Est Market Value
+        if (this.maxEstimatedMarketValue != "") {
+          if (
+            address.properties.ESTIMATED_MARKET_VALUE >
+            parseInt(this.maxEstimatedMarketValue.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Prior Land
+        if (this.minPriorLand != "") {
+          if (
+            address.properties.PRIOR_LAND <
+            parseInt(this.minPriorLand.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Prior Land
+        if (this.maxPriorLand != "") {
+          if (
+            address.properties.PRIOR_LAND >
+            parseInt(this.maxPriorLand.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Prior Building
+        if (this.minPriorBuilding != "") {
+          if (
+            address.properties.PRIOR_BUILDING <
+            parseInt(this.minPriorBuilding.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Prior Building
+        if (this.maxPriorBuilding != "") {
+          if (
+            address.properties.PRIOR_BUILDING >
+            parseInt(this.maxPriorBuilding.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Prior Total
+        if (this.minPriorTotal != "") {
+          if (
+            address.properties.PRIOR_TOTAL <
+            parseInt(this.minPriorTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Prior Total
+        if (this.maxPriorTotal != "") {
+          if (
+            address.properties.PRIOR_TOTAL >
+            parseInt(this.maxPriorTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min PPrior Land
+        if (this.minPPriorLand != "") {
+          if (
+            address.properties.PPRIOR_LAND <
+            parseInt(this.minPPriorLand.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max PPrior Land
+        if (this.maxPPriorLand != "") {
+          if (
+            address.properties.PPRIOR_LAND >
+            parseInt(this.maxPPriorLand.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min PPrior Building
+        if (this.minPPriorBuilding != "") {
+          if (
+            address.properties.PPRIOR_BUILDING <
+            parseInt(this.minPPriorBuilding.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max PPrior Building
+        if (this.maxPPriorBuilding != "") {
+          if (
+            address.properties.PPRIOR_BUILDING >
+            parseInt(this.maxPPriorBuilding.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min PPrior Total
+        if (this.minPPriorTotal != "") {
+          if (
+            address.properties.PPRIOR_TOTAL <
+            parseInt(this.minPPriorTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max PPrior Total
+        if (this.maxPPriorTotal != "") {
+          if (
+            address.properties.PPRIOR_TOTAL >
+            parseInt(this.maxPPriorTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min PPrior Year
+        if (this.minPPriorYear != "") {
+          if (
+            parseInt(address.properties.PPRIOR_YEAR) <
+            parseInt(this.minPPriorYear)
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max PPrior Year
+        if (this.maxPPriorYear != "") {
+          if (
+            parseInt(address.properties.PPRIOR_YEAR) >
+            parseInt(this.maxPPriorYear)
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check TOWN
+        if (this.townSelected != "" && this.townSelected != "Any") {
+          if (address.properties.TOWN != this.townSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Volume
+        if (this.volumeSelected != "" && this.volumeSelected != "Any") {
+          if (address.properties.VOLUME != this.volumeSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Loc
+        if (this.locSelected != "" && this.locSelected != "Any") {
+          if (address.properties.LOC != this.locSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Tax Code
+        if (this.taxCodeSelected != "" && this.taxCodeSelected != "Any") {
+          if (address.properties.TAX_CODE != this.taxCodeSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Neighborhood
+        if (
+          this.neighborhoodSelected != "" &&
+          this.neighborhoodSelected != "Any"
+        ) {
+          if (address.properties.NEIGHBORHOOD != this.neighborhoodSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check House Number
+        if (this.houseNumber != "") {
+          if (
+            address.properties.HOUSENO.toLowerCase().includes(
+              this.houseNumber.toLowerCase()
+            ) == false
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Dir
+        if (this.directionSelected != "" && this.directionSelected != "Any") {
+          if (address.properties.DIR != this.directionSelected) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Street
+        if (this.streetSelected != "" && this.streetSelected != "Any") {
+          if (
+            address.properties.STREET.toLowerCase() !=
+            this.streetSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check SUFFIX
+        if (this.suffixSelected != "" && this.suffixSelected != "Any") {
+          if (
+            address.properties.SUFFIX.toLowerCase() !=
+            this.suffixSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APT
+        if (this.aptSelected != "" && this.aptSelected != "Any") {
+          if (
+            address.properties.APT.toLowerCase() !=
+            this.aptSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check City
+        if (this.citySelected != "" && this.citySelected != "Any") {
+          if (
+            address.properties.CITY.toLowerCase() !=
+            this.citySelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Res_TYPE
+        if (this.resTypeSelected != "" && this.resTypeSelected != "Any") {
+          if (
+            address.properties.RES_TYPE.toLowerCase() !=
+            this.resTypeSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check BLDG_USE
+        if (
+          this.buildingUseSelected != "" &&
+          this.buildingUseSelected != "Any"
+        ) {
+          if (
+            address.properties.BLDG_USE.toLowerCase() !=
+            this.buildingUseSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APT_DESC
+        if (this.aptDescSelected != "" && this.aptDescSelected != "Any") {
+          if (
+            address.properties.APT_DESC.toLowerCase() !=
+            this.aptDescSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check COMM_UNITS
+        if (this.commUnitsSelected != "" && this.commUnitsSelected != "Any") {
+          if (
+            address.properties.COMM_UNITS.toLowerCase() !=
+            this.commUnitsSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check EXT_DESC
+        if (this.extDescSelected != "" && this.extDescSelected != "Any") {
+          if (
+            address.properties.EXT_DESC.toLowerCase() !=
+            this.extDescSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check FULL_BATH
+        if (this.fullBathSelected != "" && this.fullBathSelected != "Any") {
+          if (
+            address.properties.FULL_BATH.toLowerCase() !=
+            this.fullBathSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check HALF_BATH
+        if (this.halfBathSelected != "" && this.halfBathSelected != "Any") {
+          if (
+            address.properties.HALF_BATH.toLowerCase() !=
+            this.halfBathSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check BSMT_DESC
+        if (this.bsmtDescSelected != "" && this.bsmtDescSelected != "Any") {
+          if (
+            address.properties.BSMT_DESC.toLowerCase() !=
+            this.bsmtDescSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check ATTIC_DESC
+        if (this.atticDescSelected != "" && this.atticDescSelected != "Any") {
+          if (
+            address.properties.ATTIC_DESC.toLowerCase() !=
+            this.atticDescSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check AC
+        if (this.acSelected != "" && this.acSelected != "Any") {
+          if (
+            address.properties.AC.toLowerCase() != this.acSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check FIREPLACE
+        if (this.fireplaceSelected != "" && this.fireplaceSelected != "Any") {
+          if (
+            address.properties.FIREPLACE.toLowerCase() !=
+            this.fireplaceSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check GAR_DESC
+        if (this.garDescSelected != "" && this.garDescSelected != "Any") {
+          if (
+            address.properties.GAR_DESC.toLowerCase() !=
+            this.garDescSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min Age_
+        if (this.minAge != "") {
+          if (parseInt(address.properties.AGE) < parseInt(this.minAge)) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max Age_
+        if (this.maxAge != "") {
+          if (parseInt(address.properties.AGE) > parseInt(this.maxAge)) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min BUILDING_SQ_FT
+        if (this.minBuildingSqFt != "") {
+          if (
+            parseInt(address.properties.BUILDING_SQ_FT) <
+            parseInt(this.minBuildingSqFt.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max BUILDING_SQ_FT
+        if (this.maxBuildingSqFt != "") {
+          if (
+            parseInt(address.properties.BUILDING_SQ_FT) >
+            parseInt(this.maxBuildingSqFt.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min LAND_SQ_FT
+        if (this.minLandSqFt != "") {
+          if (
+            parseInt(address.properties.LAND_SQ_FT) <
+            parseInt(this.minLandSqFt.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max LAND_SQ_FT
+        if (this.maxLandSqFt != "") {
+          if (
+            parseInt(address.properties.LAND_SQ_FT) >
+            parseInt(this.maxLandSqFt.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min BLDG_SF
+        if (this.minBuildingSf != "") {
+          if (
+            parseInt(address.properties.BLDG_SF) <
+            parseInt(this.minBuildingSf.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max BLDG_SF
+        if (this.maxBuildingSf != "") {
+          if (
+            parseInt(address.properties.BLDG_SF) >
+            parseInt(this.maxBuildingSf.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min UNITS_TOT
+        if (this.minUnitsTotal != "") {
+          if (
+            parseInt(address.properties.UNITS_TOT) <
+            parseInt(this.minUnitsTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max UNITS_TOT
+        if (this.maxUnitsTotal != "") {
+          if (
+            parseInt(address.properties.UNITS_TOT) >
+            parseInt(this.maxUnitsTotal.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check MULTI_SALE
+        if (this.multiSaleSelected != "" && this.multiSaleSelected != "Any") {
+          if (
+            address.properties.MULTI_SALE.toLowerCase() !=
+            this.multiSaleSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check DEED_TYPE
+        if (this.deedTypeSelected != "" && this.deedTypeSelected != "Any") {
+          if (
+            address.properties.DEED_TYPE.toLowerCase() !=
+            this.deedTypeSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min SALE_AMOUNT
+        if (this.minSaleAmount != "") {
+          if (
+            parseInt(address.properties.SALE_AMOUNT) <
+            parseInt(this.minSaleAmount.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max SALE_AMOUNT
+        if (this.maxSaleAmount != "") {
+          if (
+            parseInt(address.properties.SALE_AMOUNT) >
+            parseInt(this.maxSaleAmount.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APPCNT
+        if (this.appcntSelected != "" && this.appcntSelected != "Any") {
+          if (
+            address.properties.APPCNT.toLowerCase() !=
+            this.appcntSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min APPEAL_A
+        if (this.minAppealA != "") {
+          if (
+            parseInt(address.properties.APPEAL_A) <
+            parseInt(this.minAppealA.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max APPEAL_A
+        if (this.maxAppealA != "") {
+          if (
+            parseInt(address.properties.APPEAL_A) >
+            parseInt(this.maxAppealA.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APPEAL_A_STATUS
+        if (
+          this.appealAStatusSelected != "" &&
+          this.appealAStatusSelected != "Any"
+        ) {
+          if (
+            address.properties.APPEAL_A_STATUS.toLowerCase() !=
+            this.appealAStatusSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APPEAL_A_RESULT
+        if (
+          this.appealAResultSelected != "" &&
+          this.appealAResultSelected != "Any"
+        ) {
+          if (
+            address.properties.APPEAL_A_RESULT.toLowerCase() !=
+            this.appealAResultSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APPEAL_A_REASON
+        if (
+          this.appealAReasonSelected != "" &&
+          this.appealAReasonSelected != "Any"
+        ) {
+          if (
+            address.properties.APPEAL_A_REASON.toLowerCase() !=
+            this.appealAReasonSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check APPEAL_A_PIN_RESULT
+        if (
+          this.appealAPinResultSelected != "" &&
+          this.appealAPinResultSelected != "Any"
+        ) {
+          if (
+            address.properties.APPEAL_A_PIN_RESULT.toLowerCase() !=
+            this.appealAPinResultSelected.toLowerCase()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min APPEAL_A_PROPAV
+        if (this.minAppealAPropav != "") {
+          if (
+            parseInt(address.properties.APPEAL_A_PROPAV) <
+            parseInt(this.minAppealAPropav.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max APPEAL_A_PROPAV
+        if (this.maxAppealAPropav != "") {
+          if (
+            parseInt(address.properties.APPEAL_A_PROPAV) >
+            parseInt(this.maxAppealAPropav.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min APPEAL_A_CURRAV
+        if (this.minAppealACurrav != "") {
+          if (
+            parseInt(address.properties.APPEAL_A_CURRAV) <
+            parseInt(this.minAppealACurrav.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max APPEAL_A_CURRAV
+        if (this.maxAppealACurrav != "") {
+          if (
+            parseInt(address.properties.APPEAL_A_CURRAV) >
+            parseInt(this.maxAppealACurrav.replace(/,/g, ""))
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // End of Filter function
       });
     },
     clearFilters() {
