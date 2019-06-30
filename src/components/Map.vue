@@ -2279,6 +2279,134 @@ export default {
           }
         }
 
+        // Check Min SALE_DATE
+        if (this.minSaleDate != "") {
+          let splitString = this.minSaleDate.split("/");
+
+          if (parseInt(splitString[2]) < 22) {
+            splitString[2] = "20" + splitString[2];
+          } else if (
+            parseInt(splitString[2]) > 22 &&
+            parseInt(splitString[2]) < 1000
+          ) {
+            splitString[2] = "19" + splitString[2];
+          }
+
+          let newString =
+            splitString[2] + "/" + splitString[0] + "/" + splitString[1];
+
+          let dateObject = new Date(newString);
+
+          let dateObjectFromAddress = new Date(address.properties.SALE_DATE);
+
+          if (
+            dateObjectFromAddress.getTime() <
+            dateObject.getTime()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max SALE_DATE
+        if (this.maxSaleDate != "") {
+          let splitString = this.maxSaleDate.split("/");
+
+          if (parseInt(splitString[2]) < 22) {
+            splitString[2] = "20" + splitString[2];
+          } else if (
+            parseInt(splitString[2]) > 22 &&
+            parseInt(splitString[2]) < 1000
+          ) {
+            splitString[2] = "19" + splitString[2];
+          }
+
+          let newString =
+            splitString[2] + "/" + splitString[0] + "/" + splitString[1];
+
+          let dateObject = new Date(newString);
+
+          let dateObjectFromAddress = new Date(address.properties.SALE_DATE);
+
+          if (
+            dateObjectFromAddress.getTime() >
+            dateObject.getTime()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Min APPEAL_A_RESLTDATE
+        if (this.minAppealAResultDate != "") {
+          let splitString = this.minAppealAResultDate.split("/");
+
+          if (parseInt(splitString[2]) < 22) {
+            splitString[2] = "20" + splitString[2];
+          } else if (
+            parseInt(splitString[2]) > 22 &&
+            parseInt(splitString[2]) < 1000
+          ) {
+            splitString[2] = "19" + splitString[2];
+          }
+
+          let newString =
+            splitString[2] + "/" + splitString[0] + "/" + splitString[1];
+
+          let dateObject = new Date(newString);
+
+          let dateObjectFromAddress = new Date(address.properties.APPEAL_A_RESLTDATE);
+
+          if (
+            dateObjectFromAddress.getTime() <
+            dateObject.getTime()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
+        // Check Max APPEAL_A_RESLTDATE
+        if (this.maxAppealAResultDate != "") {
+          let splitString = this.maxAppealAResultDate.split("/");
+
+          if (parseInt(splitString[2]) < 22) {
+            splitString[2] = "20" + splitString[2];
+          } else if (
+            parseInt(splitString[2]) > 22 &&
+            parseInt(splitString[2]) < 1000
+          ) {
+            splitString[2] = "19" + splitString[2];
+          }
+
+          let newString =
+            splitString[2] + "/" + splitString[0] + "/" + splitString[1];
+
+          let dateObject = new Date(newString);
+
+          let dateObjectFromAddress = new Date(address.properties.APPEAL_A_RESLTDATE);
+
+          if (
+            dateObjectFromAddress.getTime() >
+            dateObject.getTime()
+          ) {
+            this.allMarkers[i].setVisible(false);
+            // Close info window if last selected becomes hidden
+            if (this.previousMarker == this.allMarkers[i]) {
+              this.previousMarker.infowindow.close();
+            }
+          }
+        }
+
         // End of Filter function
       });
     },

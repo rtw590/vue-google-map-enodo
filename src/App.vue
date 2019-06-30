@@ -1,14 +1,19 @@
 <template>
   <v-app>
-    <v-toolbar app color="rgb(156, 204, 101)">
+    <v-toolbar app color="rgb(55, 71, 79)">
       <v-toolbar-title class="headline text-uppercase">
-        <span>Chicago:</span>
-        <span class="font-weight-light ml-2">Real Estate</span>
+        <!-- <span>Chicago:</span>
+        <span class="font-weight-light ml-2">Real Estate</span>-->
+        <img
+          src="https://www.enodoinc.com/assets/images/logo/logo_green.svg"
+          style="height: 30px;"
+          alt="Enodo"
+        />
       </v-toolbar-title>
     </v-toolbar>
 
     <v-content>
-      <Map/>
+      <Map />
     </v-content>
   </v-app>
 </template>
