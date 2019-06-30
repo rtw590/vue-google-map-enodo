@@ -1,4 +1,4 @@
-# vue-google-map
+# vue-google-map-enodo
 
 ## Project setup
 ```
